@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Three-Finger Swipe Tab Switcher",
+    "name": "Two-Finger Swipe Tab Switcher",
     "version": "1.0",
-    "description": "Switch between tabs with a three-finger swipe on the trackpad.",
+    "description": "Switch between tabs with a two-finger swipe on the trackpad.",
     "permissions": [
         "tabs"
     ],

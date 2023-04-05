@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "Three-Finger Swipe Tab Switcher",
+    "version": "1.0",
+    "description": "Switch between tabs with a three-finger swipe on the trackpad.",
+    "permissions": [
+        "tabs"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "48": "icon48.png",
+            "128": "icon128.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "hammer.min.js",
+                "content.js"
+            ]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "icons": {
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}

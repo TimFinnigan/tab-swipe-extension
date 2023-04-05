@@ -1,11 +1,20 @@
-const swipeHandler = new Hammer(document.documentElement);
+let lastWheelEventTime = 0;
 
-swipeHandler.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+function handleWheelEvent(e) {
+	const currentTime = new Date().getTime();
+	const timeDelta = currentTime - lastWheelEventTime;
 
-swipeHandler.on('swipeleft', () => {
-	chrome.runtime.sendMessage({ direction: 'left' });
-});
+	if (timeDelta < 500) {
+		return;
+	}
 
-swipeHandler.on('swiperight', () => {
-	chrome.runtime.sendMessage({ direction: 'right' });
-});
+	lastWheelEventTime = currentTime;
+
+	if (e.deltaX < -50) {
+		chrome.runtime.sendMessage({ direction: 'right' });
+	} else if (e.deltaX > 50) {
+		chrome.runtime.sendMessage({ direction: 'left' });
+	}
+}
+
+window.addEventListener('wheel', handleWheelEvent, { passive: true });
